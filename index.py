@@ -88,6 +88,11 @@ def getPass(username):
     valor = request.json
     return control.getPassword(valor['username'])
 
+
+@app.route('/recoveryPass')
+def recoveryPass():
+    return render_template('resetPass.html')
+
 @app.route('/getSignIn',
 #methods=['POST']
 )#Ruta que sirve para iniciar sesion
