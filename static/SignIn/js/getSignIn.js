@@ -11,7 +11,7 @@
 			var username = document.querySelector("#username").value;
 			var password = document.querySelector("#password").value;
 			//Mando a hacer la peticion
-			fetch('http://localhost:8000/getSignIn', {
+			fetch('http://localhost:8000/postLogin', {
   				method: 'POST',
   				headers: headers,
   				body: `{
