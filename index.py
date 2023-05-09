@@ -76,6 +76,10 @@ def addUser():
     else:
         return '{\"data\": \"El usuario ya existe\"}'
 
+@app.route('/registerView')
+def registerView():
+    return render_template('register.html')
+
 @app.route("/getPassword/<username>", methods=["POST"])#Ruta que sirve para mostrar la contraseña de un usuario
 def getPass(username):
     valor = request.json

@@ -7,17 +7,17 @@
     <title>Registro</title>
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="/static/SignUp/fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/SignUp/css/style.css">
 </head>
 <body>
 
     <div class="main">
 
         <section class="signup">
-            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <!-- <img src="/static/SignUp/images/signup-bg.jpg" alt=""> -->
             <div class="container">
                 <div class="signup-content">
                     <form method="POST" id="signup-form" class="signup-form" onsubmit="return false">
@@ -36,11 +36,11 @@
                         </div>
                         
                         <div class="form-group">
-                            <input type="submit" name="submit" id="submit" class="form-submit" onclick="getSignUp()" value="Registrarse"/>
+                            <input type="submit" name="submit" id="submit" class="form-submit" onclick="getSignUp();" value="Registrarse"/>
                         </div>
                     </form>
                     <p class="loginhere">
-                        Ya tienes cuenta ? <a href="../SignIn/login.html" class="loginhere-link">Ingresa aquí</a>
+                        Ya tienes cuenta ? <a href="/getSignIn" class="loginhere-link">Ingresa aquí</a>
                     </p>
                 </div>
             </div>
@@ -49,10 +49,10 @@
     </div>
 
     <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/static/SignUp/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/SignUp/js/main.js"></script>
 
-    <script src="js/getSignUp.js"></script>
+    <script src="/static/SignUp/js/getSignUp.js"></script>
 
 
     
