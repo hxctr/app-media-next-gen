@@ -63,6 +63,9 @@ control = Control()
 def index():
     return render_template('index.html')
 
+@app.route('/normalUser')
+def normalUser():
+    return render_template('normalUser.html')
 
 @app.route('/getAllUsers')#Ruta para obtener todos los usuarios que han sido registrados
 def usuarios():

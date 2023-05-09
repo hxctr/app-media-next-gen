@@ -28,7 +28,7 @@
                     window.location.replace('https://www.w3schools.com/js/tryit.asp?filename=tryjs_whereto_url_relative')
 				}
 				else if(data.data=="true"){
-					window.location.replace('../NormalUser/normalUser.html')
+					window.location.replace('http://localhost:8000/normalUser')
 				}else{
 					alert('Usuario o contraseña incorrecto')
 				}
