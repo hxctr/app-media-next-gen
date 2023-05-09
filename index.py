@@ -93,7 +93,15 @@ def getSignIn():
     # else:
     #     return "{\"data\":\"false\"}"
     return render_template('login.html')
-    
 
+@app.route('/postLogin', methods=['POST'])    
+def postLogin():
+    data=request.json
+    if data['username'] =='admin' and data['password'] == "admin":
+        return "{\"data\":\"admin\"}"
+    elif control.getSignIn(data['username'],data['password']):
+        return "{\"data\":\"true\"}"
+    else:
+        return "{\"data\":\"false\"}"
 if __name__ == "__main__":
     app.run(port="8000",debug=True)  
