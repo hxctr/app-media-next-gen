@@ -1,4 +1,4 @@
-from flask import Flask,request, render_template, session
+from flask import Flask,request, render_template, session, redirect, url_for
 from flask_cors import CORS
 from flask_session import Session
 import json
@@ -39,6 +39,7 @@ class Control:
     def getSignIn(self,username,password):#Metodo para iniciar sesion
         for i in self.users:
             if i.username==username and i.password==password:
+                print(i.username)
                 return True, i.username
         return False
 
@@ -75,6 +76,7 @@ control = Control()
 
 app.config['SECRET_KEY'] = 'clave_secreta'
 app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_FILE_DIR'] = '/dev/null'
 sess = Session()
 
 
@@ -128,20 +130,31 @@ def getSignIn():
 @app.route('/postLogin', methods=['POST'])    
 def postLogin():
     data=request.json
+    global userg
+    userg = ''
+    
+
     if data['username'] =='admin' and data['password'] == "admin":
         return "{\"data\":\"admin\"}"
     elif control.getSignIn(data['username'],data['password']):
-        boolResponse, current_user = control.getSignIn(data['username'],data['password'])
-        session['usuario_actual'] = current_user
-        return "{\"data\":\"true\", \"username\":\""+session['usuario_actual']+"\"}"
+        # boolResponse, current_user = control.getSignIn(data['username'],data['password'])
+        boolResponse, userg = control.getSignIn(data['username'],data['password'])
+        # session['usuario_actual'] = current_user
+        print('-----'+userg)
+        return "{\"data\":\"true\", \"username\":\""+userg+"\"}"
     else:
         return "{\"data\":\"false\"}"
 
 @app.route('/dashboard')
 def dashboard():
     usuario_actual = session.get('usuario_actual')
-    return render_template('dashboard.html', usuario_actual = usuario_actual)
+    return render_template('dashboard.html', usuariol = userg)
 
+
+@app.route('/logout')
+def logout():
+    session.pop('usuario_actual', None)
+    return redirect(url_for('index'))
 
 
 
