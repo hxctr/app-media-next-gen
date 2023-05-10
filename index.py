@@ -1,5 +1,6 @@
-from flask import Flask,request, render_template
+from flask import Flask,request, render_template, session
 from flask_cors import CORS
+from flask_session import Session
 import json
 
 #Clase la cual me controla los usuarios
@@ -38,9 +39,13 @@ class Control:
     def getSignIn(self,username,password):#Metodo para iniciar sesion
         for i in self.users:
             if i.username==username and i.password==password:
-                return True
+                return True, i.username
         return False
 
+class Newsletter:
+    def __init__(self):
+        self.news = []
+    # I will do the methods here to insert news
 
 
 #Clase que posee los atributos de los usuarios
@@ -51,13 +56,27 @@ class Users:
         self.username=username
         self.password=password
 
+class News:
+    def __init__(self, username, headline, body):
+        self.username = username
+        self.headline = headline
+        self.body = body
+
+
+
 
 
 app = Flask(__name__)
 
 CORS(app)
+Session(app)
 
 control = Control()
+
+app.config['SECRET_KEY'] = 'clave_secreta'
+app.config['SESSION_TYPE'] = 'filesystem'
+sess = Session()
+
 
 @app.route('/')#Ruta por default
 def index():
@@ -112,10 +131,23 @@ def postLogin():
     if data['username'] =='admin' and data['password'] == "admin":
         return "{\"data\":\"admin\"}"
     elif control.getSignIn(data['username'],data['password']):
-        return "{\"data\":\"true\"}"
+        boolResponse, current_user = control.getSignIn(data['username'],data['password'])
+        session['usuario_actual'] = current_user
+        return "{\"data\":\"true\", \"username\":\""+session['usuario_actual']+"\"}"
     else:
         return "{\"data\":\"false\"}"
 
+@app.route('/dashboard')
+def dashboard():
+    usuario_actual = session.get('usuario_actual')
+    return render_template('dashboard.html', usuario_actual = usuario_actual)
+
+
+
 
 if __name__ == "__main__":
+    
+    sess.init_app(app)
     app.run(port="8000",debug=True)  
+    
+
