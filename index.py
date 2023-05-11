@@ -150,6 +150,10 @@ def dashboard():
     usuario_actual = session.get('usuario_actual')
     return render_template('dashboard.html', usuariol = userg)
 
+@app.route('/post')
+def post():
+    return render_template('post.html', usuariol = userg)
+
 
 @app.route('/logout')
 def logout():
