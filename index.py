@@ -52,9 +52,9 @@ class Newsletter:
         self.news.append(newPost)
 
     def getPosts(self):
-        text = '[\n'
+        text = '['
         for i in self.news:
-            text += "{\"username\":"+i.username+",\n\"headline\":"+i.headline+",\n\"body\":"+i.body+"}"
+            text += "\n{\"username\":"+i.username+",\n\"headline\":"+i.headline+",\n\"body\":"+i.body+"},"
         text+='\n]'
         return text
 
