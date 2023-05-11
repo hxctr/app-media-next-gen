@@ -47,6 +47,17 @@ class Newsletter:
     def __init__(self):
         self.news = []
     # I will do the methods here to insert news
+    def addPost(self, username, headline, body):
+        newPost = News(username, headline, body)
+        self.news.append(newPost)
+
+    def getPosts(self):
+        text = '[\n'
+        for i in self.news:
+            text += "{\"username\":"+i.username+",\n\"headline\":"+i.headline+",\n\"body\":"+i.body+"}"
+        text+='\n]'
+        return text
+
 
 
 #Clase que posee los atributos de los usuarios
@@ -62,6 +73,8 @@ class News:
         self.username = username
         self.headline = headline
         self.body = body
+    
+    
 
 
 
@@ -73,6 +86,7 @@ CORS(app)
 Session(app)
 
 control = Control()
+newsletter = Newsletter()
 
 app.config['SECRET_KEY'] = 'clave_secreta'
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -92,6 +106,10 @@ def normalUser():
 def usuarios():
     return control.getUsers()
 
+@app.route('/getAllPosts')
+def getAllPosts():
+    return newsletter.getPosts()
+
 @app.route('/addUser',methods=['POST'])#Ruta que sirve para registrar un usuario
 def addUser():
     data=request.json
@@ -99,6 +117,14 @@ def addUser():
         return '{\"data\":\"El usuario ha sido registrado exitosamente\"}'
     else:
         return '{\"data\": \"El usuario ya existe\"}'
+
+@app.route('/add_post', methods=["POST"])
+def add_post():
+    data = request.json #this line reads the json send in postman, and acts like a dict 
+    newsletter.addPost(data['username'], data['headline'], data['body'])
+    return "{\"data\":\"Data posted successfully}"
+
+    
 
 @app.route('/registerView')
 def registerView():
