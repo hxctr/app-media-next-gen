@@ -4,7 +4,10 @@ let headers = new Headers();
 		headers.append('Access-Control-Allow-Origin', 'http://localhost:8000');
 		headers.append('Access-Control-Allow-Credentials', 'true');
 		headers.append('GET', 'POST', 'OPTIONS');
-		function getSignUp(){
+		function post(){
+
+
+			
 			//Obteniendo la data para el registro
 			var name = document.querySelector("#username").value;
 			var lastName = document.querySelector("#lastname").value;
