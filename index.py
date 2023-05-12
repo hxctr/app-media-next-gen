@@ -58,14 +58,18 @@ class Newsletter:
             text = '['
             #yes there posts
             for i in self.news:
-                text += "\n{\"username\":"+i.username+",\n\"headline\":"+i.headline+",\n\"body\":"+i.body+"},"
+                text += "\n{\"username\":\""+i.username+"\",\n\"headline\":\""+i.headline+"\",\n\"body_post\":\""+i.body+"\"},"
             text = text[:-1]
             text+='\n]'
+            print(len(text))
             return text
         
         else:
+            
 
             text='[\n]'
+            # print(len(text))
+            #length of 3
             return text
        
 

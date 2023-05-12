@@ -66,8 +66,42 @@
       <!-- <h1>Bienvenido, {{ usuariol }}</h1>
     <a href="/logout">Logout</a> -->
 
-      <table align="center" style="margin-top: 40px; ">
+      <table align="center" style="margin-top: 40px; " id="post-activiy">
+
+
+
+        <script>
+          let text = "";
+          fetch('http://localhost:8000/getAllPosts')
+          .then(response => response.json()
+          .then(data => {
+          
+            for (let i = 0; i < data.length; i++) {
+              text += `
         <tr>
+          <td style="padding: 10px;">
+            <div class="card">
+              <h5 class="card-header">Posted by ${data[i].username}</h5>
+              <div class="card-body">
+                <h5 class="card-title">${data[i].headline}</h5>
+                <p class="card-text">${data[i].body_post}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+              `
+              
+            }
+            document.getElementById("post-activiy").innerHTML = text;
+          })
+          )
+        </script>
+
+
+
+
+        <!-- <tr>
           <td style="padding: 10px;">
             <div class="card">
               <h5 class="card-header">Posted by {{username}}</h5>
@@ -78,10 +112,12 @@
               </div>
             </div>
           </td>
-        </tr>
+        </tr> -->
+
+        
 
 
-        <tr>
+        <!-- <tr>
           <td style="padding: 10px;">
             <div class="card">
               <h5 class="card-header">Posted by {{username}}</h5>
@@ -93,7 +129,7 @@
             </div>
           </td>
         </tr>
-      </table>
+      </table> -->
 
 
 
