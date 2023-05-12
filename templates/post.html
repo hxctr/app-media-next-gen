@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/static/post/css/style.css">
 </head>
 <body>
-
+    <input type="" id="username" value="{{usuariol}}" readonly>
     <div class="main">
 
         <section class="signup">
@@ -26,10 +26,10 @@
                             <input type="text" class="form-input" name="cabecera" id="headline" placeholder="Headline"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="cuerpo" id="body" placeholder="Body"/>
+                            <input type="text" class="form-input" name="cuerpo" id="body_post" placeholder="Body"/>
                         </div> 
                         <div class="form-group">
-                            <input type="submit" name="submit" id="submit" class="form-submit" onclick="getSignUp();" value="Post"/>
+                            <input type="submit" name="submit" id="submit" class="form-submit" onclick="post();" value="Posttt"/>
                         </div>
                     </form>
                     <p class="loginhere">
@@ -45,10 +45,10 @@
     <script src="/static/post/vendor/jquery/jquery.min.js"></script>
     <script src="/static/post/js/main.js"></script>
 
-    <script src="/static/post/js/getSignUp.js"></script>
+    <script src="/static/post/js/post.js"></script>
 
 
-    <input type="" id="miInputHidden" value="{{usuariol}}" readonly>
+    
 
 
 

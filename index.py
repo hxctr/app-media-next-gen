@@ -121,8 +121,8 @@ def addUser():
 @app.route('/add_post', methods=["POST"])
 def add_post():
     data = request.json #this line reads the json send in postman, and acts like a dict 
-    newsletter.addPost(data['username'], data['headline'], data['body'])
-    return "{\"data\":\"Data posted successfully}"
+    newsletter.addPost(data['username'], data['headline'], data['body_post'])
+    return "{\"data\":\"Data posted successfully\"}"
 
     
 
