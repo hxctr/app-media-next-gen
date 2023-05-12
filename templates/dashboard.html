@@ -15,6 +15,15 @@
         background-size: cover;
     }
    
+    table {
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 10px;
+    word-wrap: break-word;
+    max-width: 600px; /* Puedes ajustar el valor según tus necesidades */
+  }
 </style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -56,6 +65,46 @@
 
       <!-- <h1>Bienvenido, {{ usuariol }}</h1>
     <a href="/logout">Logout</a> -->
+
+      <table align="center" style="margin-top: 40px; ">
+        <tr>
+          <td style="padding: 10px;">
+            <div class="card">
+              <h5 class="card-header">Posted by {{username}}</h5>
+              <div class="card-body">
+                <h5 class="card-title">{{headline}}</h5>
+                <p class="card-text">{{Body}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td style="padding: 10px;">
+            <div class="card">
+              <h5 class="card-header">Posted by {{username}}</h5>
+              <div class="card-body">
+                <h5 class="card-title">{{headline}}</h5>
+                <p class="card-text">{{body}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+
+
+
+
+
+
+
+
+
+    </div>
     
 </body>
 </html>

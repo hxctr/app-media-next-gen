@@ -1,4 +1,4 @@
-from flask import Flask,request, render_template, session, redirect, url_for
+from flask import Flask,request, render_template, session, redirect, url_for, jsonify
 from flask_cors import CORS
 from flask_session import Session
 import json
@@ -52,11 +52,29 @@ class Newsletter:
         self.news.append(newPost)
 
     def getPosts(self):
-        text = '['
-        for i in self.news:
-            text += "\n{\"username\":"+i.username+",\n\"headline\":"+i.headline+",\n\"body\":"+i.body+"},"
-        text+='\n]'
-        return text
+        
+
+        if len(self.news) > 0:
+            text = '['
+            #yes there posts
+            for i in self.news:
+                text += "\n{\"username\":"+i.username+",\n\"headline\":"+i.headline+",\n\"body\":"+i.body+"},"
+            text = text[:-1]
+            text+='\n]'
+            return text
+        
+        else:
+
+            text='[\n]'
+            return text
+       
+
+       
+        
+        
+
+       
+        
 
 
 
@@ -106,7 +124,7 @@ def normalUser():
 def usuarios():
     return control.getUsers()
 
-@app.route('/getAllPosts')
+@app.route('/getAllPosts')#I have to use this function to get all post in the dashbord, but with no pressing something, just adding a request from the fetch
 def getAllPosts():
     return newsletter.getPosts()
 
