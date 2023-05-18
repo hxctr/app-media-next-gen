@@ -1,7 +1,7 @@
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 		headers.append('Accept', 'application/json');
-		headers.append('Access-Control-Allow-Origin', 'http://localhost:8000');
+		headers.append('Access-Control-Allow-Origin', 'http://localhost:5000');
 		headers.append('Access-Control-Allow-Credentials', 'true');
 		headers.append('GET', 'POST', 'OPTIONS');
 
@@ -11,7 +11,7 @@
 			var username = document.querySelector("#username").value;
 			var password = document.querySelector("#password").value;
 			//Mando a hacer la peticion
-			fetch('http://localhost:8000/postLogin', {
+			fetch('http://localhost:5000/postLogin', {
   				method: 'POST',
   				headers: headers,
   				body: `{
@@ -25,11 +25,11 @@
 			.then(data => {
 				if(data.data=="admin"){
                     alert('Ingresando como administrador')
-                    window.location.replace('http://localhost:8000/admin')
+                    window.location.replace('http://localhost:5000/admin')
 				}
 				else if(data.data=="true"){
 					console.log(data.username)
-					window.location.replace('http://localhost:8000/dashboard')
+					window.location.replace('http://localhost:5000/dashboard')
 				}else{
 					alert('Usuario o contraseña incorrecto')
 				}
