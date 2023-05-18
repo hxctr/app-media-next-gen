@@ -25,7 +25,7 @@
 			.then(data => {
 				if(data.data=="admin"){
                     alert('Ingresando como administrador')
-                    window.location.replace('https://www.w3schools.com/js/tryit.asp?filename=tryjs_whereto_url_relative')
+                    window.location.replace('http://localhost:8000/admin')
 				}
 				else if(data.data=="true"){
 					console.log(data.username)

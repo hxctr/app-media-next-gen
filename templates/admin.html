@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <title>Dashboard</title>
+</head>
+<style>
+    body{
+        background-image: url('/static/SignIn/images/img-01.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+   
+    table {
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 10px;
+    word-wrap: break-word;
+    max-width: 600px; /* Puedes ajustar el valor según tus necesidades */
+  }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">iUSAC</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              
+              <li class="nav-item">
+                <a class="nav-link" href="/post">Post</a>
+              </li>
+             
+              
+            </ul>
+            <form class="d-flex" role="search">
+        
+              <!-- <a href="" class="me-2">hola</a> -->
+              <h3 class="me-2">{{ usuario }}</h3>
+              <button class="btn btn-outline-success" type="submit"><a href="/logout"> Logout</a></button>
+              
+            </form>
+
+            <!-- <div class="position-absolute top-0 end-0">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <a class="nav-link" href="#">Link</a>
+            </div>
+            -->
+            
+          </div>
+        </div>
+      </nav>
+
+
+
+    
+
+      <!-- <h1>Bienvenido, {{ usuariol }}</h1>
+        <a href="/logout">Logout</a> -->
+
+    <table align="center" style="margin-top: 40px; " id="post-activiy">
+
+
+
+        <!-- <script>
+          let text = "";
+          fetch('http://localhost:8000/getAllPosts')
+          .then(response => response.json()
+          .then(data => {
+          
+            for (let i = 0; i < data.length; i++) {
+              text += `
+        <tr>
+          <td style="padding: 10px;">
+            <div class="card">
+              <h5 class="card-header">Posted by ${data[i].username}</h5>
+              <div class="card-body">
+                <h5 class="card-title">${data[i].headline}</h5>
+                <p class="card-text">${data[i].body_post}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+              `
+              
+            }
+            document.getElementById("post-activiy").innerHTML = text;
+          })
+          )
+        </script> -->
+
+
+
+
+        <!-- <tr>
+          <td style="padding: 10px;">
+            <div class="card">
+              <h5 class="card-header">Posted by {{username}}</h5>
+              <div class="card-body">
+                <h5 class="card-title">{{headline}}</h5>
+                <p class="card-text">{{Body}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </td>
+        </tr> -->
+
+        
+
+
+        <!-- <tr>
+          <td style="padding: 10px;">
+            <div class="card">
+              <h5 class="card-header">Posted by {{username}}</h5>
+              <div class="card-body">
+                <h5 class="card-title">{{headline}}</h5>
+                <p class="card-text">{{body}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </td>
+        </tr>-->
+      </table> 
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+</body>
+</html>

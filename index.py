@@ -193,6 +193,11 @@ def postLogin():
     else:
         return "{\"data\":\"false\"}"
 
+
+@app.route('/admin')
+def admin():
+    return render_template('admin.html', usuario = 'Administrator')
+
 @app.route('/dashboard')
 def dashboard():
     usuario_actual = session.get('usuario_actual')
