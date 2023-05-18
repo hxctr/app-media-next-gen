@@ -25,7 +25,8 @@ class Control:
     def getUsers(self):#Metodo que devulve los usuarios registrados
         text="[\n"
         for i in self.users:
-            text+="{\"nombre\":"+i.nombre+", \"apellido\":"+i.apellido+", \"username\":"+i.username+"}\n"
+            text+="{\"nombre\":\""+i.nombre+"\", \"apellido\":\""+i.apellido+"\", \"username\":\""+i.username+"\"}\n,"
+        text = text[:-1]
         text+='\n]'
         return text
 

@@ -22,7 +22,7 @@
   td {
     padding: 10px;
     word-wrap: break-word;
-    max-width: 600px; /* Puedes ajustar el valor según tus necesidades */
+    max-width: 1000px; /* Puedes ajustar el valor según tus necesidades */
   }
 </style>
 <body>
@@ -35,9 +35,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               
-              <li class="nav-item">
-                <a class="nav-link" href="/post">Post</a>
-              </li>
+              
              
               
             </ul>
@@ -45,7 +43,7 @@
         
               <!-- <a href="" class="me-2">hola</a> -->
               <h3 class="me-2">{{ usuario }}</h3>
-              <button class="btn btn-outline-success" type="submit"><a href="/logout"> Logout</a></button>
+              <button class="btn btn-outline-success" type="submit"><a href="/logout" style="text-decoration: none; color: white;"> Logout</a></button>
               
             </form>
 
@@ -66,8 +64,88 @@
       <!-- <h1>Bienvenido, {{ usuariol }}</h1>
         <a href="/logout">Logout</a> -->
 
-    <table align="center" style="margin-top: 40px; " id="post-activiy">
+      <table align="center" style="margin-top: 40px; " id="post-activiy">
+        <tr>
+          <td>
 
+
+
+
+
+            <table class="table table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Lastname</th>
+                  <th scope="col">username</th>
+
+                </tr>
+              </thead>
+
+
+
+              <tbody id="user-table">
+
+                <script>
+                  let text = "";
+
+                  fetch('http://localhost:5000/getAllUsers')
+                  .then(response => response.json()
+                  .then(data => {
+                    for (let i = 0; i < data.length; i++) {
+                      text += `
+                      <tr>
+                  <th scope="row">${i+1}</th>
+                  <td>${data[i].nombre}</td>
+                  <td>${data[i].apellido}</td>
+                  <td>${data[i].username}</td>
+                </tr>
+                      
+                      
+                      
+                      `
+                      
+                    }
+                    document.getElementById('user-table').innerHTML = text;
+                  })
+                  )
+                </script>
+
+
+                <!-- <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>hola mundo</td>
+                </tr> -->
+              
+              </tbody>
+
+
+            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </td>
+        </tr>
 
 
         <!-- <script>
@@ -130,6 +208,8 @@
           </td>
         </tr>-->
       </table> 
+
+      
 
 
 
