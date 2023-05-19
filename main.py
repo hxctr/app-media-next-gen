@@ -1,120 +1,22 @@
 from flask import Flask,request, render_template, session, redirect, url_for, jsonify
-from flask_cors import CORS
 from flask_session import Session
+from flask_cors import CORS
+from post import Newsletter
+from user import Control
 import json
-
-#Clase la cual me controla los usuarios
-class Control:
-    def __init__(self):
-        self.users=[]
-    
-    def addUser(self,nombre,apellido,username,password):#Metodo que registra un usuario
-        newUser = Users(nombre,apellido,username,password)
-        if self.existUser(username):
-            return False
-        else:
-            self.users.append(newUser)
-            return True
-
-    def existUser(self,username):#Metodo que verifica si el usuario registrado ya existe
-        for i in self.users:
-            if i.username==username:
-                return True
-        return False
-
-    def getUsers(self):#Metodo que devulve los usuarios registrados
-        text="[\n"
-        for i in self.users:
-            text+="{\"nombre\":\""+i.nombre+"\", \"apellido\":\""+i.apellido+"\", \"username\":\""+i.username+"\"}\n,"
-        text = text[:-1]
-        text+='\n]'
-        return text
-
-
-    def getPassword(self, username):#Metodo que devuelve la contraseña de un usuario
-        for i in self.users:
-            if i.username == username:
-                return "{\"password\":\""+i.password+"\"}\n"
-        return ""
-
-    def getSignIn(self,username,password):#Metodo para iniciar sesion
-        for i in self.users:
-            if i.username==username and i.password==password:
-                print(i.username)
-                return True, i.username
-        return False
-
-class Newsletter:
-    def __init__(self):
-        self.news = []
-    # I will do the methods here to insert news
-    def addPost(self, username, headline, body):
-        newPost = News(username, headline, body)
-        self.news.append(newPost)
-
-    def getPosts(self):
-        
-
-        if len(self.news) > 0:
-            text = '['
-            #yes there posts
-            for i in self.news:
-                text += "\n{\"username\":\""+i.username+"\",\n\"headline\":\""+i.headline+"\",\n\"body_post\":\""+i.body+"\"},"
-            text = text[:-1]
-            text+='\n]'
-            print(len(text))
-            return text
-        
-        else:
-            
-
-            text='[\n]'
-            # print(len(text))
-            #length of 3
-            return text
-       
-
-       
-        
-        
-
-       
-        
-
-
-
-#Clase que posee los atributos de los usuarios
-class Users:
-    def __init__(self,nombre,apellido,username,password):
-        self.nombre=nombre
-        self.apellido=apellido
-        self.username=username
-        self.password=password
-
-class News:
-    def __init__(self, username, headline, body):
-        self.username = username
-        self.headline = headline
-        self.body = body
-    
-    
-
-
-
-
 
 app = Flask(__name__)
 
 CORS(app)
 Session(app)
 
+sess = Session()
 control = Control()
 newsletter = Newsletter()
 
-app.config['SECRET_KEY'] = 'clave_secreta'
+app.config['SECRET_KEY'] = 'g5h2s7g6f5g4'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_FILE_DIR'] = '/dev/null'
-sess = Session()
 
 
 @app.route('/')#Ruta por default
@@ -147,8 +49,6 @@ def add_post():
     newsletter.addPost(data['username'], data['headline'], data['body_post'])
     return "{\"data\":\"Data posted successfully\"}"
 
-    
-
 @app.route('/registerView')
 def registerView():
     return render_template('register.html')
@@ -158,7 +58,6 @@ def getPass(username):
     valor = request.json
     return control.getPassword(valor['username'])
 
-
 @app.route('/recoveryPass')
 def recoveryPass():
     return render_template('resetPass.html')
@@ -167,13 +66,6 @@ def recoveryPass():
 #methods=['POST']
 )#Ruta que sirve para iniciar sesion
 def getSignIn():
-    # data=request.json
-    # if data['username'] =='admin' and data['password'] == "admin":
-    #     return "{\"data\":\"admin\"}"
-    # elif control.getSignIn(data['username'],data['password']):
-    #     return "{\"data\":\"true\"}"
-    # else:
-    #     return "{\"data\":\"false\"}"
     return render_template('login.html')
 
 @app.route('/postLogin', methods=['POST'])    
@@ -182,7 +74,6 @@ def postLogin():
     global userg
     userg = ''
     
-
     if data['username'] =='admin' and data['password'] == "admin":
         return "{\"data\":\"admin\"}"
     elif control.getSignIn(data['username'],data['password']):
@@ -193,7 +84,6 @@ def postLogin():
         return "{\"data\":\"true\", \"username\":\""+userg+"\"}"
     else:
         return "{\"data\":\"false\"}"
-
 
 @app.route('/admin')
 def admin():
@@ -208,16 +98,12 @@ def dashboard():
 def post():
     return render_template('post.html', usuariol = userg)
 
-
 @app.route('/logout')
 def logout():
     session.pop('usuario_actual', None)
     return redirect(url_for('index'))
 
-
-
 if __name__ == "__main__":
-    
     sess.init_app(app)
     app.run(port="5000",debug=True)  
     
