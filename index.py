@@ -137,9 +137,9 @@ def getAllPosts():
 def addUser():
     data=request.json
     if control.addUser(data['nombre'],data['apellido'],data['username'],data['password']):
-        return '{\"data\":\"El usuario ha sido registrado exitosamente\"}'
+        return '{\"data\":\"Your account has been created\"}'
     else:
-        return '{\"data\": \"El usuario ya existe\"}'
+        return '{\"data\": \"User already exists\"}'
 
 @app.route('/add_post', methods=["POST"])
 def add_post():
